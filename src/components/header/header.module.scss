@@ -1,0 +1,16 @@
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 3%;
+  height: var(--header-height);
+  @include mq {
+    height: var(--header-height-pc);
+  }
+}
+
+.lists {
+  display: flex;
+  justify-content: space-evenly;
+  gap: 1rem;
+}

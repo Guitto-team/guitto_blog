@@ -1,9 +1,9 @@
 [![Netlify Status](https://api.netlify.com/api/v1/badges/c95a1d91-c06d-40a9-8a9e-3d5f64c535b2/deploy-status)](https://app.netlify.com/sites/creative-horse-2ce51f/deploys)
 
 
-## Getting Started
+## はじめに
 
-First, run the development server:
+下記コマンドを実行。
 
 ```bash
 npm run dev
@@ -11,10 +11,11 @@ npm run dev
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+ブラウザで[http://localhost:3000](http://localhost:3000)を開くと、結果を見ることができます。
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+ページの編集は `pages/*.tsx` を修正することで開始できます。ファイルを編集すると、ページが自動更新されます。
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+[APIルート](https://nextjs.org/docs/api-routes/introduction)は、[http://localhost:3000/api/hello](http://localhost:3000/api/hello)でアクセスすることができます。このエンドポイントは `pages/api/hello.js` で編集することができる。
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+pages/api` ディレクトリは `/api/*` にマップされる。このディレクトリにあるファイルは React ページではなく、[API routes](https://nextjs.org/docs/api-routes/introduction) として扱われる。
+

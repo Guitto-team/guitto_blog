@@ -1,0 +1,113 @@
+:root {
+  //色 -----------------------------------
+  --yellow: #ffef00;
+  --lightyellow: #f9f2bb;
+  --blue: #0092f1;
+  --navy: #053e62;
+  --lightblue: #e9f0f7;
+  --lightgreen: #dcedd0;
+  --red: #fc0000;
+  --orange: #e83b18;
+  --white: #fff;
+  --offwhite: #f9f9f9;
+  --black: #000;
+  --grey: #d4dde2;
+  --darkgrey: #848c8f;
+  --lightgrey: #ebf2f6;
+  --ivory: #f5f1eb;
+  // メインカラー
+  --main-c: var(--navy);
+  // サブカラー
+  --base-c: var(--offwhite);
+  // アクセントカラー
+  --accent-c: var(--yellow);
+  //　背景カラー
+  --bg-c: var(--lightblue);
+  // ボーダーカラー
+  --border-c: var(--grey);
+
+  // ヘッダー高さ -----------------------------------
+  --header-height: 80px;
+  --header-height-pc: 100px;
+
+  //コンテンツ幅 ----------------------------
+  --inner-width: 1400px;
+
+  //ブロック間余白 --------------------------
+  --wrapper-padding: 10px;
+  --wrapper-padding-pc: 25px;
+  
+  // ベースフォントサイズ -----------------------------------
+  --base-font-size: 16;
+
+  //フォント -----------------------------------
+  --gothic: "Lato", "メイリオ", Meiryo, " ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic ProN", "ＭＳ Ｐゴシック", Arial, Helvetica, sans-serif;
+  --mincho: "游明朝", YuMincho, "ヒラギノ明朝 ProN W3", "Hiragino Mincho ProN", "Sawarabi Mincho", "HG明朝E", "ＭＳ Ｐ明朝", "ＭＳ 明朝", serif;
+}
+
+html {
+  font-size: var(--base-font-size) + px;
+  text-underline-position: under;
+  // scroll-behavior: smooth;
+  // height: 100%;
+  background-color: var(--black);
+}
+body {
+  font-family: var(--gothic);
+  font-weight: 400;
+  line-height: 1.75;
+  // height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  letter-spacing: 0.02em;
+  font-feature-settings: "palt";
+  color: var(--white);
+  // font-size: rem(14);
+  // @include mq() {
+  //   font-size: rem(16);
+  // }
+}
+
+// body > footer {
+//   position: sticky;
+//   top: 100vh;
+// }
+
+a {
+  color: inherit;
+  cursor: pointer;
+}
+svg {
+  display: block;
+  max-width: 100%;
+}
+img {
+  display: block;
+  max-width: 100%;
+  width: auto;
+  height: auto;
+}
+
+span,
+i {
+  font-size: inherit;
+  color: inherit;
+  letter-spacing: inherit;
+  line-height: inherit;
+  font-family: inherit;
+}
+
+button {
+  font-size: inherit;
+  font-family: inherit;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  cursor: pointer;
+  &:focus {
+    opacity: 0.6;
+    // border: 1px solid $border-c;
+  }
+}

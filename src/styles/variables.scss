@@ -1,0 +1,50 @@
+@use 'sass:math';
+
+// 下記2パターン用意しているので案件によって適宜選ぶ
+
+// $breakpoints: (
+//   'sm': 'screen and (min-width: 576px)',
+//   'md': 'screen and (min-width: 768px)',
+//   'lg': 'screen and (min-width: 992px)',
+//   'xl': 'screen and (min-width: 1200px)',
+//   'xxl': 'screen and (min-width: 1400px)'
+// ) !default;
+
+$breakpoints: (
+  "xs": "screen and (min-width: 576px)",
+  "sm": "screen and (min-width: 640px)",
+  "md": "screen and (min-width: 768px)",
+  "lg": "screen and (min-width: 1024px)",
+  "contents": "screen and (min-width: 1200px)",
+  "xl": "screen and (min-width: 1280px)",
+  "xxl": "screen and (min-width: 1440px)",
+  "-sm": "screen and (max-width: 639px)",
+  "-md": "screen and (max-width: 767px)",
+) !default;
+
+@mixin mq($breakpoint: md) {
+  @media #{map-get($breakpoints, $breakpoint)} {
+    @content;
+  }
+}
+
+
+$fontSize: var(--base-font-size);
+@function rem($pixels) {
+  @return math.div($pixels, $fontSize) * 1rem;
+}
+
+//remをpx感覚で使う
+//例）.class{font-size:  rem(12);}
+//→　.class{font-size: 0.875rem;}
+
+$baseWidth_sp: 375; //　SP用
+@function vw_sp($px) {
+  @return math.div($px, $baseWidth_sp) * 100 * 1vw;
+}
+$baseWidth_pc: 1920; // PC用
+@function vw_pc($px) {
+  @return math.div($px, $baseWidth_pc) * 100 * 1vw;
+}
+//vwをpx感覚で使う
+//例）.class{font-size: vw_sp(12);}
