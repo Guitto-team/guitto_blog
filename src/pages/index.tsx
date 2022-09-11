@@ -1,5 +1,6 @@
+import React, { Component } from 'react'
 import Link from "next/link";
-import { client } from "../libs/client";
+import { client } from "libs/client";
 
 export default function Home({ blog }) {
   return (
