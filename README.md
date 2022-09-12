@@ -3,7 +3,13 @@
 
 ## はじめに
 
-下記コマンドを実行。
+APIキーは下記に保存しています。
+
+作業開始前にダウンロードしアプリケーションのルートディレクトリに設置して下さい。
+
+https://drive.google.com/drive/folders/1YG4KO5TFwvxcnL0I1YTBZSJ1FD4DrXUp
+
+その後下記コマンドを実行。
 
 ```bash
 npm run dev
