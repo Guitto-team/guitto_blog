@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from "next/link";
-import styles from './header.module.scss'
+import styles from './index.module.scss'
 
 export default function Header() {
   return (
@@ -10,13 +10,8 @@ export default function Header() {
       </Link>
       <ul className={styles.lists}>
         <li className={styles.listsItem}>
-          <Link href={`/`} className={styles.link}>
-            dammy
-          </Link>
-        </li>
-        <li className={styles.listsItem}>
-          <Link href={`/`} className={styles.link}>
-            dammy
+          <Link href={`https://www.guitto.co.jp/contact`} className={styles.link}>
+            Contact
           </Link>
         </li>
       </ul>

@@ -1,0 +1,32 @@
+.LayoutStack {
+  * {
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+}
+
+.s0 {
+  > * + * {
+    margin-top: var(--margin-s0);
+  }
+}
+.s1 {
+  > * + * {
+    margin-top: var(--margin-s1);
+  }
+}
+.s2 {
+  > * + * {
+    margin-top: var(--margin-s2);
+  }
+}
+.s3 {
+  > * + * {
+    margin-top: var(--margin-s3);
+  }
+}
+.s4 {
+  > * + * {
+    margin-top: var(--margin-s4);
+  }
+}

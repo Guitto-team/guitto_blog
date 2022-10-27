@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import Header from 'components/header/header'
-import Footer from 'components/footer/footer'
+import Header from 'components/ui-projects/header'
+import Footer from 'components/ui-projects/footer'
 
 import '../styles/reset.scss'
 import '../styles/global.scss'

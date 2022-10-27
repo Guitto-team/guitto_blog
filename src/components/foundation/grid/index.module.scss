@@ -1,0 +1,26 @@
+.Grid {
+  display: grid;
+}
+
+.col2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.col3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.col4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+.col6 {
+  grid-template-columns: repeat(6, 1fr);
+}
+
+.small {
+  gap: 1rem;
+}
+.medium {
+  gap: 2rem;
+}
+.large {
+  gap: 3rem;
+}

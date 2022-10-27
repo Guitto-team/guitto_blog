@@ -1,0 +1,13 @@
+.LayoutInner {
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.medum {
+  max-width: var(--inner-width);
+}
+
+.full {
+  max-width: none;
+}

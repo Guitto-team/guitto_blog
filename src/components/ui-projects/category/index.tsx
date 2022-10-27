@@ -1,11 +1,12 @@
 import React from 'react';
 import Link from "next/link";
-import styles from './category.module.scss';
+import styles from './index.module.scss';
 import classnames from 'classnames';
+import { Flex } from 'components/foundation/flex';
 
 export default function Category(props) {
   return (
-    <ul className={styles.categories}>
+    <Flex gap='small'>
       <li className={classnames(styles.item)}>
         <Link href={`/`}>
           <a className={classnames(styles.link, styles.isActive)}>ALL</a>
@@ -18,6 +19,6 @@ export default function Category(props) {
           </Link>
         </li>
       ))}
-    </ul>
+    </Flex>
   );
 }
