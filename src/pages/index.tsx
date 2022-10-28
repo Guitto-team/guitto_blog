@@ -5,23 +5,12 @@ import Grid from 'components/foundation/grid';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
 import Category from 'components/ui-projects/category';
-import Head from 'next/head';
+import Seo from 'components/foundation/seo';
 
 export default function Home({ blog, category }) {
   return (
     <>
-      <Head>
-        <title>BLOG | Guitto Inc.</title>
-        <meta
-          name='description'
-          content='ぐいっとは、東京の神保町で企画・デザインを中心に制作事業を行っているクリエイティブ企業です。各種WEB制作・グラフィック制作等、ご相談ください。'
-        />
-        <meta property='og:title' content='BLOG | Guitto Inc.' />
-        <meta
-          property='og:description'
-          content='ぐいっとは、東京の神保町で企画・デザインを中心に制作事業を行っているクリエイティブ企業です。各種WEB制作・グラフィック制作等、ご相談ください。'
-        />
-      </Head>
+      <Seo title='Blog Top' />
 
       <LayoutInner size='full'>
         <LayoutStack>

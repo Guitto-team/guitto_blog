@@ -1,30 +1,31 @@
 import React, { Component } from 'react';
 import { client } from 'libs/client';
-import styles from './blog.module.scss';
+import styles from './index.module.scss';
 import LayoutInner from 'components/foundation/layout-inner';
-import Head from 'next/head';
+import LayoutStack from 'components/foundation/layout-stack';
+import Seo from 'components/foundation/seo';
 
 export default function BlogId({ blog }) {
   return (
     <>
-      <Head>
-        <title>{blog.title} | Guitto Inc.</title>
-        <meta name='description' content={`${blog.title}のページ`} />
-        <meta property='og:title' content={`${blog.title} | Guitto Inc.`} />
-        <meta property='og:description' content={`${blog.title}のページ`} />
-      </Head>
+      <Seo
+        title={blog.title}
+        description={`${blog.title}のページ`}
+      />
 
       <main className={styles.main}>
         <LayoutInner>
-          <h1 className={styles.title}>{blog.title}</h1>
-          <p className={styles.publishedAt}>{blog.publishedAt}</p>
-          <p className='category'>{blog.category && `${blog.category.name}`}</p>
-          <div
-            dangerouslySetInnerHTML={{
-              __html: `${blog.content}`,
-            }}
-            className={styles.post}
-          />
+          <LayoutStack>
+            <h1 className={styles.title}>{blog.title}</h1>
+            <p className={styles.publishedAt}>{blog.publishedAt}</p>
+            <p className='category'>{blog.category && `${blog.category.name}`}</p>
+            <div
+              dangerouslySetInnerHTML={{
+                __html: `${blog.content}`,
+              }}
+              className={styles.post}
+            />
+          </LayoutStack>
         </LayoutInner>
       </main>
     </>

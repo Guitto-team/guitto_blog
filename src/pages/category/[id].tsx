@@ -1,48 +1,42 @@
 import Link from 'next/link';
 import { client } from '../../libs/client';
 import LayoutInner from 'components/foundation/layout-inner';
+import LayoutStack from 'components/foundation/layout-stack';
+import Grid from 'components/foundation/grid';
 import Category from 'components/ui-projects/category';
-import Head from 'next/head';
+import Seo from 'components/foundation/seo';
 
-export default function CategoryId({ blog, category }) {
-  // カテゴリーに紐付いたコンテンツがない場合に表示
-  if (blog.length === 0) {
-    return (
-      <>
-        <Head>
-          <title>NoContent | Guitto Inc.</title>
-          <meta name='description' content='に該当する記事は現在公開されていません。' />
-          <meta property='og:title' content={`NoContent | Guitto Inc.`} />
-          <meta property='og:description' content='に該当する記事は現在公開されていません。' />
-        </Head>
+export default function CategoryId({ blog, category, id }) {
 
-        <LayoutInner>
-          <div>ブログコンテンツがありません</div>
-        </LayoutInner>
-      </>
-    );
-  }
+  const targetCategory = category.find(elm => elm.id === id);
+
   return (
     <>
-      <Head>
-        <title>{category.name}一覧 | Guitto Inc.</title>
-        <meta name='description' content={`${category.name}一覧のページ`} />
-        <meta property='og:title' content={`${blog.name}一覧 | Guitto Inc.`} />
-        <meta property='og:description' content={`${category.name}一覧のページ`} />
-      </Head>
+      <Seo
+        title={`${targetCategory.name} の記事一覧`}
+        description={`${targetCategory.name} の記事一覧ページです。`}
+      />
 
       <LayoutInner>
-        <h1>ぐいっとBLOG</h1>
-        <Category category={category} />
-        <ul>
-          {blog.map((blog) => (
-            <li key={blog.id}>
-              <Link href={`/blog/${blog.id}`}>
-                <a>{blog.title}</a>
-              </Link>
-            </li>
-          ))}
-        </ul>
+        <LayoutStack>
+          <h1>ぐいっとBLOG</h1>
+          <Category category={category} active={id} />
+
+          {blog.length === 0 ? (
+            <p>コンテンツがありません</p>
+          ) : (
+            <Grid type='col4'>
+              {blog.map((blog) => (
+                <div key={blog.id}>
+                  <Link href={`/blog/${blog.id}`}>
+                    <a>{blog.title}</a>
+                  </Link>
+                </div>
+              ))}
+            </Grid>
+          )}
+
+        </LayoutStack>
       </LayoutInner>
     </>
   );
@@ -69,6 +63,7 @@ export const getStaticProps = async (context) => {
     props: {
       blog: data.contents,
       category: categoryData.contents,
+      id: id,
     },
   };
 };
