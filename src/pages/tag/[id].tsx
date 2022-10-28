@@ -5,9 +5,9 @@ import Category from 'components/ui-projects/category';
 import Seo from 'components/foundation/seo';
 import CardList from 'components/ui-projects/card-list';
 
-export default function CategoryId({ blog, category, id }) {
+export default function TagId({ blog, category, tag, id }) {
 
-  const target = category.find(elm => elm.id === id);
+  const target = tag.find(elm => elm.id === id);
 
   return (
     <>
@@ -19,7 +19,7 @@ export default function CategoryId({ blog, category, id }) {
       <LayoutInner size='full'>
         <LayoutStack>
           <h1>ぐいっとBLOG</h1>
-          <Category category={category} active={id} />
+          <Category category={category} />
 
           {blog.length === 0 ? (
             <p>コンテンツがありません</p>
@@ -35,9 +35,9 @@ export default function CategoryId({ blog, category, id }) {
 
 // 静的生成のためのパスを指定します
 export const getStaticPaths = async () => {
-  const data = await client.get({ endpoint: 'categories' });
+  const data = await client.get({ endpoint: 'tags' });
 
-  const paths = data.contents.map((content) => `/category/${content.id}`);
+  const paths = data.contents.map((content) => `/tag/${content.id}`);
   return { paths, fallback: false };
 };
 
@@ -46,14 +46,16 @@ export const getStaticProps = async (context) => {
   const id = context.params.id;
   const data = await client.get({
     endpoint: 'blog',
-    queries: { filters: `category[equals]${id}` },
+    queries: { filters: `tag[contains]${id}` },
   });
   const categoryData = await client.get({ endpoint: 'categories' });
+  const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
       blog: data.contents,
       category: categoryData.contents,
+      tag: tagData.contents,
       id: id,
     },
   };

@@ -25,9 +25,9 @@ export const Flex: React.FC<FlexProps> = ({
         styles[gap]
       );
   return (
-    <div className={classProps}>
+    <ul className={classProps}>
       {children}
-    </div>
+    </ul>
   );
 }
 

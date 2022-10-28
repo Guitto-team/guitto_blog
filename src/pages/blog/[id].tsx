@@ -3,7 +3,9 @@ import { client } from 'libs/client';
 import styles from './index.module.scss';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
+import Flex from 'components/foundation/flex';
 import Seo from 'components/foundation/seo';
+import Tag from 'components/ui-parts/tag';
 
 export default function BlogId({ blog }) {
   return (
@@ -25,6 +27,13 @@ export default function BlogId({ blog }) {
               }}
               className={styles.post}
             />
+            <Flex>
+              {blog.tag && blog.tag.map((tag) => (
+                <li key={tag.id}>
+                  <Tag content={tag} />
+                </li>
+              ))}
+            </Flex>
           </LayoutStack>
         </LayoutInner>
       </main>

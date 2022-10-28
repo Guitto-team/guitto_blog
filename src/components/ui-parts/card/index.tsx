@@ -5,20 +5,20 @@ import classnames from 'classnames';
 import Image from 'next/image';
 
 export interface CardProps {
-  blog: any,
+  content: any,
 }
 
 export const Card: React.FC<CardProps> = ({
-    blog,
+    content,
   }) => {
   return (
-    <Link href={`/blog/${blog.id}`} >
+    <Link href={`/blog/${content.id}`} >
       <a className={classnames(styles.card)}>
         <div className={classnames(styles.head)}>
-          <Image src={'/images/placehold.png'} layout='fill' alt={`${blog.title}の画像`} objectFit='cover' className={classnames(styles.image)} />
+          <Image src={'/images/placehold.png'} layout='fill' alt={`${content.title}の画像`} objectFit='cover' className={classnames(styles.image)} />
         </div>
         <div className={classnames(styles.body)}>
-          <h3>{blog.title}</h3>
+          <h3>{content.title}</h3>
         </div>
       </a>
     </Link>
