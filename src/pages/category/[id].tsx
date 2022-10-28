@@ -5,6 +5,7 @@ import LayoutStack from 'components/foundation/layout-stack';
 import Grid from 'components/foundation/grid';
 import Category from 'components/ui-projects/category';
 import Seo from 'components/foundation/seo';
+import Card from 'components/ui-parts/card';
 
 export default function CategoryId({ blog, category, id }) {
 
@@ -28,9 +29,7 @@ export default function CategoryId({ blog, category, id }) {
             <Grid type='col4'>
               {blog.map((blog) => (
                 <div key={blog.id}>
-                  <Link href={`/blog/${blog.id}`}>
-                    <a>{blog.title}</a>
-                  </Link>
+                  <Card blog={blog} />
                 </div>
               ))}
             </Grid>
