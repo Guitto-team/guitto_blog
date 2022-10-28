@@ -6,6 +6,7 @@ import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
 import Category from 'components/ui-projects/category';
 import Seo from 'components/foundation/seo';
+import Card from 'components/ui-parts/card';
 
 export default function Home({ blog, category }) {
   return (
@@ -19,9 +20,7 @@ export default function Home({ blog, category }) {
           <Grid type='col4'>
             {blog.map((blog) => (
               <div key={blog.id}>
-                <Link href={`/blog/${blog.id}`}>
-                  <a>{blog.title}</a>
-                </Link>
+                <Card blog={blog} />
               </div>
             ))}
           </Grid>

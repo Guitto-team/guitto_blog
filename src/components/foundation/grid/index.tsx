@@ -10,7 +10,7 @@ export interface GridProps {
 
 export const Grid: React.FC<GridProps> = ({
     type = 'col4',
-    gap = 'small',
+    gap = 'medium',
     children,
   }) => {
     const classProps:string = classnames(styles.Grid, styles[type], styles[gap])

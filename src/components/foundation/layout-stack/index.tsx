@@ -8,7 +8,7 @@ export interface LayoutStackProps {
 }
 
 export const LayoutStack: React.FC<LayoutStackProps> = ({
-   margin = 's1',
+   margin = 's2',
    children,
   }) => {
     const classProps:string = classnames(styles.LayoutStack, styles[margin])

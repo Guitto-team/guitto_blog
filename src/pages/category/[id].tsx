@@ -17,7 +17,7 @@ export default function CategoryId({ blog, category, id }) {
         description={`${targetCategory.name} の記事一覧ページです。`}
       />
 
-      <LayoutInner>
+      <LayoutInner size='full'>
         <LayoutStack>
           <h1>ぐいっとBLOG</h1>
           <Category category={category} active={id} />
