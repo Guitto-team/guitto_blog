@@ -11,7 +11,7 @@ export const Tag: React.FC<TagProps> = ({
     content,
   }) => {
   return (
-    <Link href={`/tag/${content.id}`} >
+    <Link href={`/tag/${content.id}`} scroll={false}>
       <a className={classnames(styles.Tag)}>
         {content.name}
       </a>

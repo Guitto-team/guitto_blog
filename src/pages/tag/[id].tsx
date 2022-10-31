@@ -1,9 +1,13 @@
 import { client } from '../../libs/client';
+import Header from 'components/ui-projects/header';
+import Footer from 'components/ui-projects/footer'
+import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
 import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
+import { motion } from 'framer-motion'
 
 export default function TagId({ blogs, tag, id }) {
 
@@ -16,21 +20,32 @@ export default function TagId({ blogs, tag, id }) {
         description={`${target.name} の記事一覧ページです。`}
       />
 
-      <LayoutInner size='full'>
-        <LayoutStack>
-          <h1>ぐいっとBLOG</h1>
-          <h2>{target.name}の記事一覧</h2>
+      <Header />
+      <Main>
+        <LayoutInner size='full'>
+          <LayoutStack>
+            <h1>ぐいっとBLOG</h1>
+            <h2>{target.name}の記事一覧</h2>
 
-          {blogs.length === 0 ? (
-            <p>コンテンツがありません</p>
-          ) : (
-            <CardList contents={blogs} />
-          )}
+            <motion.div
+              initial={{ opacity: 0, y: "10%" }} // 初期状態
+              animate={{ opacity: 1, y: "0%" }} // マウント時
+              exit={{ opacity: 0, y: "10%" }}    // アンマウント時            
+            >
+              {blogs.length === 0 ? (
+                <p>コンテンツがありません</p>
+              ) : (
+                <CardList contents={blogs} />
+              )}
+            </motion.div>
 
-          <TagList contents={tag} />
+            <TagList contents={tag} />
 
-        </LayoutStack>
-      </LayoutInner>
+          </LayoutStack>
+        </LayoutInner>
+      </Main>
+      <Footer />
+
     </>
   );
 }

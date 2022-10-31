@@ -1,19 +1,15 @@
 import React, { Component } from 'react'
-import Header from 'components/ui-projects/header'
-import Footer from 'components/ui-projects/footer'
-import Main from 'components/ui-projects/main'
+import { AnimatePresence } from 'framer-motion'
 
 import '../styles/reset.scss'
 import '../styles/global.scss'
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, router }) {
   return (
     <>
-      <Header />
-      <Main>
-        <Component {...pageProps} />
-      </Main>
-      <Footer />
+      <AnimatePresence exitBeforeEnter onExitComplete={() => window.scrollTo(0, 0)}>
+        <Component key={router.asPath} {...pageProps} />
+      </AnimatePresence>
     </>
   )
 }

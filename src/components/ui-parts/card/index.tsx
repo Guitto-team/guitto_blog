@@ -22,7 +22,7 @@ export const Card: React.FC<CardProps> = ({
         <LayoutBox>
           <span className={classnames(styles.category)}>{content.category.name}</span>
           <TagList contents={content.tag} justifyContent={'j-flex-start'} />
-          <Link href={`/blog/${content.id}`}>
+          <Link href={`/blog/${content.id}`} scroll={false}>
             <a className={classnames(styles.showmore)}>more</a>
           </Link>
         </LayoutBox>

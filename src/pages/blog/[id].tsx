@@ -1,12 +1,18 @@
 import React, { Component } from 'react';
 import { client } from 'libs/client';
 import styles from './index.module.scss';
+import Header from 'components/ui-projects/header';
+import Footer from 'components/ui-projects/footer'
+import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
 import Seo from 'components/foundation/seo';
 import TagList from 'components/ui-projects/tag-list';
+import { motion, useScroll } from 'framer-motion'
 
 export default function BlogId({ blog }) {
+  const { scrollYProgress } = useScroll();
+
   return (
     <>
       <Seo
@@ -14,22 +20,32 @@ export default function BlogId({ blog }) {
         description={`${blog.title}のページ`}
       />
 
-      <main className={styles.main}>
+      <Header />
+      <motion.div className={styles.progressBar} style={{ scaleX: scrollYProgress }} />
+      <Main>
         <LayoutInner>
           <LayoutStack>
-            <h1 className={styles.title}>{blog.title}</h1>
-            <p className={styles.publishedAt}>{blog.publishedAt}</p>
-            <p className='category'>{blog.category && `${blog.category.name}`}</p>
-            <div
-              dangerouslySetInnerHTML={{
-                __html: `${blog.content}`,
-              }}
-              className={styles.post}
-            />
-            <TagList contents={blog.tag} />
+            <motion.div
+              initial={{ opacity: 0 }} // 初期状態
+              animate={{ opacity: 1 }} // マウント時
+              exit={{ opacity: 0 }}    // アンマウント時            
+            >
+              <h1 className={styles.title}>{blog.title}</h1>
+              <p className={styles.publishedAt}>{blog.publishedAt}</p>
+              <p className='category'>{blog.category && `${blog.category.name}`}</p>
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `${blog.content}`,
+                }}
+                className={styles.post}
+              />
+              <TagList contents={blog.tag} />
+            </motion.div>
           </LayoutStack>
         </LayoutInner>
-      </main>
+      </Main>
+      <Footer />
+
     </>
   );
 }
