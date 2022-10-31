@@ -2,13 +2,12 @@ import React, { Component } from 'react';
 import { client } from 'libs/client';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
-import Category from 'components/ui-projects/category';
-import Tag from 'components/ui-parts/tag';
+import CategoryList from 'components/ui-projects/category-list';
 import Seo from 'components/foundation/seo';
-import CardList from 'components/ui-projects/card-list';
-import Flex from 'components/foundation/flex';
+import { CardList } from 'components/ui-projects/card-list';
+import { TagList } from 'components/ui-projects/tag-list';
 
-export default function Home({ blog, category, tag }) {
+export default function Home({ blogs, category, tag }) {
   return (
     <>
       <Seo title='Blog Top' />
@@ -16,15 +15,9 @@ export default function Home({ blog, category, tag }) {
       <LayoutInner size='full'>
         <LayoutStack>
           <h1>ぐいっとBLOG</h1>
-          <Category category={category} />
-          <CardList contents={blog} />
-          <Flex>
-            {tag.map((tag) => (
-              <li key={tag.id}>
-                <Tag content={tag} />
-              </li>
-            ))}
-          </Flex>
+          <CategoryList categories={category} />
+          <CardList contents={blogs} />
+          <TagList contents={tag} />
         </LayoutStack>
       </LayoutInner>
     </>
@@ -39,7 +32,7 @@ export const getStaticProps = async () => {
 
   return {
     props: {
-      blog: data.contents,
+      blogs: data.contents,
       category: categoryData.contents,
       tag: tagData.contents,
     },

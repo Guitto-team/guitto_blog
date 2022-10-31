@@ -1,11 +1,11 @@
 import { client } from '../../libs/client';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
-import Category from 'components/ui-projects/category';
 import Seo from 'components/foundation/seo';
-import CardList from 'components/ui-projects/card-list';
+import { CardList } from 'components/ui-projects/card-list';
+import { TagList } from 'components/ui-projects/tag-list';
 
-export default function TagId({ blog, category, tag, id }) {
+export default function TagId({ blogs, tag, id }) {
 
   const target = tag.find(elm => elm.id === id);
 
@@ -19,13 +19,15 @@ export default function TagId({ blog, category, tag, id }) {
       <LayoutInner size='full'>
         <LayoutStack>
           <h1>ぐいっとBLOG</h1>
-          <Category category={category} />
+          <h2>{target.name}の記事一覧</h2>
 
-          {blog.length === 0 ? (
+          {blogs.length === 0 ? (
             <p>コンテンツがありません</p>
           ) : (
-            <CardList contents={blog} />
+            <CardList contents={blogs} />
           )}
+
+          <TagList contents={tag} />
 
         </LayoutStack>
       </LayoutInner>
@@ -48,13 +50,11 @@ export const getStaticProps = async (context) => {
     endpoint: 'blog',
     queries: { filters: `tag[contains]${id}` },
   });
-  const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
-      blog: data.contents,
-      category: categoryData.contents,
+      blogs: data.contents,
       tag: tagData.contents,
       id: id,
     },

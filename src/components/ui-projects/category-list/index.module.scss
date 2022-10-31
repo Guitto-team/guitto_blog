@@ -3,9 +3,10 @@
   padding: 3px 10px;
   border-radius: 1rem;
   text-decoration: none;
-  transition: background-color 0.3s;
+  transition: background-color 0.3s, color 0.3s;
 
   &.isActive, &:hover {
     background-color: var(--green);
+    color: var(--white);
   }
 }

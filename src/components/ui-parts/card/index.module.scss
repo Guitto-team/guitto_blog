@@ -7,14 +7,49 @@
   border-radius: 6px;
   overflow: hidden;
   text-decoration: none;
-  @include shadow;
+
+  &:before {
+    content: "";
+    display: block;
+    padding-top: 90%;
+  }
+
+  /* カード裏面・表面の共通スタイル */
+  .back,
+  .front {
+    transition: all 0.6s;
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+    border: 1px solid var(--border-c);
+  }
+  
+  /* カード表面のスタイル */
+  .front {
+    transform: rotateY(-180deg);
+  }
+  
+  /* ホバー時のカード裏面 */
+  &:hover .back {
+    transform: rotateY(180deg);
+  }
+  
+  /* ホバー時のカード表面 */
+  &:hover .front {
+    transform: rotateY(0);
+  }
 }
 
-.head {
-  position: relative;
-  height: 200px;
+.title {
+  position: absolute;
 }
 
-.body {
-  padding: 10px;
+.category {
+  color: var(--white);
+  background-color: var(--green);
+  border-radius: 2em;
+  padding: 0.1em 1em;
 }

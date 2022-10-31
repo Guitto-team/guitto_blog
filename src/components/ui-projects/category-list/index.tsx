@@ -3,13 +3,13 @@ import Link from "next/link";
 import styles from './index.module.scss';
 import classnames from 'classnames';
 import { Flex } from 'components/foundation/flex';
-export interface CategoryProps {
-  category: any,
+export interface CategoryListProps {
+  categories: any,
   active?: string,
 }
 
-export const Category: React.FC<CategoryProps> = ({
-    category,
+export const CategoryList: React.FC<CategoryListProps> = ({
+    categories,
     active = 'all',
   }) => {
     // const classProps:string = classnames(
@@ -21,7 +21,7 @@ export const Category: React.FC<CategoryProps> = ({
           <a className={classnames(styles.link, active === 'all' && styles.isActive)}>ALL</a>
         </Link>
       </li>
-      {category.map((category) => (
+      {categories.map((category) => (
         <li key={category.id} className={classnames(styles.item)}>
           <Link href={`/category/${category.id}`}>
             <a className={classnames(styles.link, active === category.id && styles.isActive)}>{category.name}</a>
@@ -32,4 +32,4 @@ export const Category: React.FC<CategoryProps> = ({
   );
 }
 
-export default React.memo(Category);
+export default React.memo(CategoryList);

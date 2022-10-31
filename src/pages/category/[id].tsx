@@ -1,13 +1,13 @@
 import { client } from '../../libs/client';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
-import Category from 'components/ui-projects/category';
+import CategoryList from 'components/ui-projects/category-list';
 import Seo from 'components/foundation/seo';
-import CardList from 'components/ui-projects/card-list';
+import { CardList } from 'components/ui-projects/card-list';
+import { TagList } from 'components/ui-projects/tag-list';
 
-export default function CategoryId({ blog, category, id }) {
-
-  const target = category.find(elm => elm.id === id);
+export default function CategoryId({ blogs, category, tag, id }) {
+  const target = category.find((elm) => elm.id === id);
 
   return (
     <>
@@ -19,14 +19,11 @@ export default function CategoryId({ blog, category, id }) {
       <LayoutInner size='full'>
         <LayoutStack>
           <h1>ぐいっとBLOG</h1>
-          <Category category={category} active={id} />
+          <CategoryList categories={category} active={id} />
 
-          {blog.length === 0 ? (
-            <p>コンテンツがありません</p>
-          ) : (
-            <CardList contents={blog} />
-          )}
+          {blogs.length === 0 ? <p>コンテンツがありません</p> : <CardList contents={blogs} />}
 
+          <TagList contents={tag} />
         </LayoutStack>
       </LayoutInner>
     </>
@@ -49,11 +46,13 @@ export const getStaticProps = async (context) => {
     queries: { filters: `category[equals]${id}` },
   });
   const categoryData = await client.get({ endpoint: 'categories' });
+  const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
-      blog: data.contents,
+      blogs: data.contents,
       category: categoryData.contents,
+      tag: tagData.contents,
       id: id,
     },
   };
