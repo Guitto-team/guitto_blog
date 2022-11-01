@@ -7,11 +7,12 @@ import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
 import Seo from 'components/foundation/seo';
-import TagList from 'components/ui-projects/tag-list';
+import { CardList } from 'components/ui-projects/card-list';
+import { TagList } from 'components/ui-projects/tag-list';
 import { motion, useScroll } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
 
-export default function BlogId({ blog }) {
+export default function BlogId({ blog, recommendBlogs }) {
   const { scrollYProgress } = useScroll();
 
   return (
@@ -33,7 +34,8 @@ export default function BlogId({ blog }) {
             >
               <Typography html='h1'>{blog.title}</Typography>
               <p className={styles.publishedAt}>{blog.publishedAt}</p>
-              <p className='category'>{blog.category && `${blog.category.name}`}</p>
+              <span className={styles.category}>{blog.category && `${blog.category.name}`}</span>
+              {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)}
               <div
                 dangerouslySetInnerHTML={{
                   __html: `${blog.content}`,
@@ -41,6 +43,10 @@ export default function BlogId({ blog }) {
                 className={styles.post}
               />
               <TagList contents={blog.tag} />
+
+              <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+              <CardList contents={recommendBlogs} />
+
             </motion.div>
           </LayoutStack>
         </LayoutInner>
@@ -63,10 +69,15 @@ export const getStaticPaths = async () => {
 export const getStaticProps = async (context) => {
   const id = context.params.id;
   const data = await client.get({ endpoint: 'blog', contentId: id });
+  const recommend = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `recommend[equals]true` },
+  });
 
   return {
     props: {
       blog: data,
+      recommendBlogs: recommend.contents,
     },
   };
 };

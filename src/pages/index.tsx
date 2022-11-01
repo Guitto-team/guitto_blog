@@ -12,7 +12,7 @@ import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
 
-export default function Home({ blogs, category, tag }) {
+export default function Home({ blogs, recommendBlogs, category, tag }) {
   return (
     <>
       <Seo title='Blog Top' />
@@ -31,6 +31,8 @@ export default function Home({ blogs, category, tag }) {
               <CardList contents={blogs} />
             </motion.div>
             <TagList contents={tag} />
+            <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+            <CardList contents={recommendBlogs} />
           </LayoutStack>
         </LayoutInner>
       </Main>
@@ -43,12 +45,17 @@ export default function Home({ blogs, category, tag }) {
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: 'blog' });
+  const recommend = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `recommend[equals]true` },
+  });
   const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
       blogs: data.contents,
+      recommendBlogs: recommend.contents,
       category: categoryData.contents,
       tag: tagData.contents,
     },

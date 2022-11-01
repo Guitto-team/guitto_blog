@@ -7,10 +7,11 @@ import LayoutStack from 'components/foundation/layout-stack';
 import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
+import { CategoryList } from 'components/ui-projects/category-list';
 import { motion } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
 
-export default function TagId({ blogs, tag, id }) {
+export default function TagId({ blogs, recommendBlogs, category, tag, id }) {
 
   const target = tag.find(elm => elm.id === id);
 
@@ -26,6 +27,7 @@ export default function TagId({ blogs, tag, id }) {
         <LayoutInner size='full'>
           <LayoutStack>
             <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
+            <CategoryList categories={category} />
             <Typography html='h2'>{target.name}の記事一覧</Typography>
 
             <motion.div
@@ -41,6 +43,9 @@ export default function TagId({ blogs, tag, id }) {
             </motion.div>
 
             <TagList contents={tag} />
+
+            <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+            <CardList contents={recommendBlogs} />
 
           </LayoutStack>
         </LayoutInner>
@@ -66,11 +71,18 @@ export const getStaticProps = async (context) => {
     endpoint: 'blog',
     queries: { filters: `tag[contains]${id}` },
   });
+  const recommend = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `recommend[equals]true` },
+  });
+  const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
       blogs: data.contents,
+      recommendBlogs: recommend.contents,
+      category: categoryData.contents,
       tag: tagData.contents,
       id: id,
     },

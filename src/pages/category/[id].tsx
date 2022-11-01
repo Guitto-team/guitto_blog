@@ -11,7 +11,7 @@ import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
 
-export default function CategoryId({ blogs, category, tag, id }) {
+export default function CategoryId({ blogs, recommendBlogs, category, tag, id }) {
   const target = category.find((elm) => elm.id === id);
 
   return (
@@ -37,6 +37,10 @@ export default function CategoryId({ blogs, category, tag, id }) {
             </motion.div>
 
             <TagList contents={tag} />
+
+            <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+            <CardList contents={recommendBlogs} />
+
           </LayoutStack>
         </LayoutInner>
       </Main>
@@ -61,12 +65,17 @@ export const getStaticProps = async (context) => {
     endpoint: 'blog',
     queries: { filters: `category[equals]${id}` },
   });
+  const recommend = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `recommend[equals]true` },
+  });
   const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
       blogs: data.contents,
+      recommendBlogs: recommend.contents,
       category: categoryData.contents,
       tag: tagData.contents,
       id: id,
