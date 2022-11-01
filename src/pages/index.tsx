@@ -10,6 +10,7 @@ import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
+import { Typography } from 'components/ui-parts/typography';
 
 export default function Home({ blogs, category, tag }) {
   return (
@@ -20,7 +21,7 @@ export default function Home({ blogs, category, tag }) {
       <Main>
         <LayoutInner size='full'>
           <LayoutStack>
-            <h1>ぐいっとBLOG</h1>
+            <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
             <CategoryList categories={category} />
             <motion.div
               initial={{ opacity: 0, y: "10%" }} // 初期状態

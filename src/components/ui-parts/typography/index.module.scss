@@ -1,0 +1,62 @@
+.Typography {
+  font-size: 1em;
+}
+
+// html
+.h1 {
+  font-size: 46px;
+  @include mq {
+    font-size: 60px;
+  }
+}
+.h2 {
+  font-size: 34px;
+  @include mq {
+    font-size: 42px;
+  }
+}
+.h3 {
+  font-size: 28px;
+  @include mq {
+    font-size: 30px;
+  }
+}
+.h4 {
+  font-size: 24px;
+  @include mq {
+    font-size: 28px;
+  }
+}
+.h5 {
+  font-size: 20px;
+  @include mq {
+    font-size: 24px;
+  }
+}
+.h6 {
+  font-size: 16px;
+  @include mq {
+    font-size: 18px;
+  }
+}
+.p {
+  font-size: 1em;
+}
+
+// weight
+.bold {
+  font-weight: bold;
+}
+
+// textAlign
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.right {
+  text-align: right;
+}

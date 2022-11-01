@@ -8,6 +8,7 @@ import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
+import { Typography } from 'components/ui-parts/typography';
 
 export default function TagId({ blogs, tag, id }) {
 
@@ -24,8 +25,8 @@ export default function TagId({ blogs, tag, id }) {
       <Main>
         <LayoutInner size='full'>
           <LayoutStack>
-            <h1>ぐいっとBLOG</h1>
-            <h2>{target.name}の記事一覧</h2>
+            <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
+            <Typography html='h2'>{target.name}の記事一覧</Typography>
 
             <motion.div
               initial={{ opacity: 0, y: "10%" }} // 初期状態
@@ -33,7 +34,7 @@ export default function TagId({ blogs, tag, id }) {
               exit={{ opacity: 0, y: "10%" }}    // アンマウント時            
             >
               {blogs.length === 0 ? (
-                <p>コンテンツがありません</p>
+                <Typography html='h6' textAlign='center'>コンテンツがありません</Typography>
               ) : (
                 <CardList contents={blogs} />
               )}

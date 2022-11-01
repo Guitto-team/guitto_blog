@@ -9,6 +9,7 @@ import LayoutStack from 'components/foundation/layout-stack';
 import Seo from 'components/foundation/seo';
 import TagList from 'components/ui-projects/tag-list';
 import { motion, useScroll } from 'framer-motion'
+import { Typography } from 'components/ui-parts/typography';
 
 export default function BlogId({ blog }) {
   const { scrollYProgress } = useScroll();
@@ -30,7 +31,7 @@ export default function BlogId({ blog }) {
               animate={{ opacity: 1 }} // マウント時
               exit={{ opacity: 0 }}    // アンマウント時            
             >
-              <h1 className={styles.title}>{blog.title}</h1>
+              <Typography html='h1'>{blog.title}</Typography>
               <p className={styles.publishedAt}>{blog.publishedAt}</p>
               <p className='category'>{blog.category && `${blog.category.name}`}</p>
               <div

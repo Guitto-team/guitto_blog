@@ -9,6 +9,7 @@ import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
+import { Typography } from 'components/ui-parts/typography';
 
 export default function CategoryId({ blogs, category, tag, id }) {
   const target = category.find((elm) => elm.id === id);
@@ -24,7 +25,7 @@ export default function CategoryId({ blogs, category, tag, id }) {
       <Main>
         <LayoutInner size='full'>
           <LayoutStack>
-            <h1>ぐいっとBLOG</h1>
+            <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
             <CategoryList categories={category} active={id} />
 
             <motion.div
@@ -32,7 +33,7 @@ export default function CategoryId({ blogs, category, tag, id }) {
               animate={{ opacity: 1, y: "0%" }} // マウント時
               exit={{ opacity: 0, y: "10%" }}    // アンマウント時            
             >
-              {blogs.length === 0 ? <p>コンテンツがありません</p> : <CardList contents={blogs} />}
+              {blogs.length === 0 ? <Typography html='p' textAlign='center'>コンテンツがありません</Typography> : <CardList contents={blogs} />}
             </motion.div>
 
             <TagList contents={tag} />
