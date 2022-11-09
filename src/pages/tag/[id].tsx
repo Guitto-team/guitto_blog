@@ -44,8 +44,12 @@ export default function TagId({ blogs, recommendBlogs, category, tag, id }) {
 
             <TagList contents={tag} />
 
-            <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
-            <CardList contents={recommendBlogs} />
+            {recommendBlogs.length > 0 && (
+              <>
+                <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+                <CardList contents={recommendBlogs} />
+              </>
+            )}
 
           </LayoutStack>
         </LayoutInner>

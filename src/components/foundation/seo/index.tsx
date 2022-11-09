@@ -14,7 +14,7 @@ export const Seo: React.FC<SeoProps> = ({
   }) => {
   return (
     <Head>
-      <title>{title} | Guitto Inc.</title>
+      <title key="title">{`${title} | Guitto Inc.`}</title>
       <meta
         name='description'
         content={description}
@@ -24,6 +24,7 @@ export const Seo: React.FC<SeoProps> = ({
         property='og:description'
         content={description}
       />
+      <meta property="og:image" content={`${process.env.SITE_URL}/ogp.png`} />
       <meta property="og:site_name" content="BLOG ｜ Guitto Inc."></meta>
     </Head>
   );

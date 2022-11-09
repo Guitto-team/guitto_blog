@@ -1,5 +1,6 @@
 .Flex {
   display: flex;
+  flex-wrap: wrap;
 }
 .col {
   flex-direction: column;

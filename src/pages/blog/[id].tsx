@@ -44,8 +44,12 @@ export default function BlogId({ blog, recommendBlogs }) {
               />
               <TagList contents={blog.tag} />
 
-              <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
-              <CardList contents={recommendBlogs} />
+              {recommendBlogs.length > 0 && (
+                <>
+                  <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+                  <CardList contents={recommendBlogs} />
+                </>
+              )}
 
             </motion.div>
           </LayoutStack>
@@ -71,7 +75,7 @@ export const getStaticProps = async (context) => {
   const data = await client.get({ endpoint: 'blog', contentId: id });
   const recommend = await client.get({
     endpoint: 'blog',
-    queries: { filters: `recommend[equals]true` },
+    queries: { filters: `recommend[equals]true[and]id[not_equals]${id}` },
   });
 
   return {

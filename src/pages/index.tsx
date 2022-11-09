@@ -11,6 +11,7 @@ import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
+import { Pagination } from 'components/ui-projects/pagination';
 
 export default function Home({ blogs, recommendBlogs, category, tag }) {
   return (
@@ -31,8 +32,12 @@ export default function Home({ blogs, recommendBlogs, category, tag }) {
               <CardList contents={blogs} />
             </motion.div>
             <TagList contents={tag} />
-            <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
-            <CardList contents={recommendBlogs} />
+            {recommendBlogs.length > 0 && (
+              <>
+                <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
+                <CardList contents={recommendBlogs} />
+              </>
+            )}
           </LayoutStack>
         </LayoutInner>
       </Main>
