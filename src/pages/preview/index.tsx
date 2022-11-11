@@ -59,7 +59,7 @@ export default function BlogId({ blog }) {
 export const getServerSideProps = async (context) => {
   const data = await client.get({
     endpoint: "blog",
-    contentId: context.query.id,
+    contentId: context.query.slug,
     queries: { draftKey: context.query.draftKey },
   });
 
