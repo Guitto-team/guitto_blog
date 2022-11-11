@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { client } from 'libs/client';
-import styles from './index.module.scss';
+import styles from '../blog/index.module.scss';
 import Header from 'components/ui-projects/header';
 import Footer from 'components/ui-projects/footer'
 import { Main } from 'components/ui-projects/main';
@@ -42,7 +42,9 @@ export default function BlogId({ blog }) {
                 }}
                 className={styles.post}
               />
-              <TagList contents={blog.tag} />
+              {blog.tag && (
+                <TagList contents={blog.tag} />
+              )}
 
             </motion.div>
           </LayoutStack>
