@@ -1,11 +1,56 @@
-import { client } from "../../libs/client";
+import React, { Component } from 'react';
+import { client } from 'libs/client';
+import styles from './index.module.scss';
+import Header from 'components/ui-projects/header';
+import Footer from 'components/ui-projects/footer'
+import { Main } from 'components/ui-projects/main';
+import LayoutInner from 'components/foundation/layout-inner';
+import LayoutStack from 'components/foundation/layout-stack';
+import Seo from 'components/foundation/seo';
+// import { CardList } from 'components/ui-projects/card-list';
+import { TagList } from 'components/ui-projects/tag-list';
+import { motion, useScroll } from 'framer-motion'
+import { Typography } from 'components/ui-parts/typography';
 
-export default function BlogId({ data }) {
+
+export default function BlogId({ blog }) {
+  const { scrollYProgress } = useScroll();
   return (
-    <main>
-      <h1>{data.title}</h1>
-      <p>{data.publishedAt}</p>
-    </main>
+    <>
+      <Seo
+        title={blog.title}
+        description={`${blog.title}のページ`}
+      />
+
+      <Header />
+      <motion.div className={styles.progressBar} style={{ scaleX: scrollYProgress }} />
+      <Main>
+        <LayoutInner>
+          <LayoutStack>
+            <motion.div
+              initial={{ opacity: 0 }} // 初期状態
+              animate={{ opacity: 1 }} // マウント時
+              exit={{ opacity: 0 }}    // アンマウント時            
+            >
+              <Typography html='h1'>{blog.title}</Typography>
+              <p className={styles.publishedAt}>{blog.publishedAt}</p>
+              <span className={styles.category}>{blog.category && `${blog.category.name}`}</span>
+              {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)}
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `${blog.content}`,
+                }}
+                className={styles.post}
+              />
+              <TagList contents={blog.tag} />
+
+            </motion.div>
+          </LayoutStack>
+        </LayoutInner>
+      </Main>
+      <Footer />
+
+    </>
   );
 }
 
@@ -17,6 +62,6 @@ export const getServerSideProps = async (context) => {
   });
 
   return {
-    props: { data },
+    props: { blog: data },
   };
 };
