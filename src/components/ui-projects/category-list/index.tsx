@@ -15,7 +15,7 @@ export const CategoryList: React.FC<CategoryListProps> = ({
     // const classProps:string = classnames(
     //   );
   return (
-    <Flex gap='small'>
+    <Flex gap='medium'>
       <li className={classnames(styles.item)}>
         <Link href={`/`} scroll={false}>
           <a className={classnames(styles.link, active === 'all' && styles.isActive)}>ALL</a>
