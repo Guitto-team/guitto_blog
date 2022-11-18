@@ -3,11 +3,11 @@
 
 ## はじめに
 
-APIキーは下記に保存しています。
+APIキーは下記に保存しています。（.env.development.local, .env.local）
 
 作業開始前にダウンロードしアプリケーションのルートディレクトリに設置して下さい。
 
-https://drive.google.com/drive/folders/1YG4KO5TFwvxcnL0I1YTBZSJ1FD4DrXUp
+https://drive.google.com/drive/folders/1uUQyDRN4Ec-bsBcfx1Ltb5JU1RsV2Eic?usp=share_link
 
 その後下記コマンドを実行。
 

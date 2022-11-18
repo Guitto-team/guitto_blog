@@ -26,8 +26,9 @@ export default function Home({ blogs, recommendBlogs, category, tag }) {
             <CategoryList categories={category} />
             <motion.div
               initial={{ opacity: 0, y: "10%" }} // 初期状態
-              animate={{ opacity: 1, y: "0%" }} // マウント時
-              exit={{ opacity: 0, y: "10%" }}    // アンマウント時            
+              whileInView={{ opacity: 1, y: "0%" }} // マウント時
+              exit={{ opacity: 0, y: "10%" }}    // アンマウント時
+              viewport={{ once: true }}
             >
               <CardList contents={blogs} />
             </motion.div>

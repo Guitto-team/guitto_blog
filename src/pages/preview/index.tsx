@@ -28,9 +28,9 @@ export default function BlogId({ blog }) {
         <LayoutInner>
           <LayoutStack>
             <motion.div
-              initial={{ opacity: 0 }} // 初期状態
-              animate={{ opacity: 1 }} // マウント時
-              exit={{ opacity: 0 }}    // アンマウント時            
+              initial={{ opacity: 0, scale: 0.9 }} // 初期状態
+              animate={{ opacity: 1, scale: 1 }} // マウント時
+              exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
             >
               <Typography html='h1'>{blog.title}</Typography>
               <p className={styles.publishedAt}>{blog.publishedAt}</p>
