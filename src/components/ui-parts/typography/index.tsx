@@ -5,21 +5,24 @@ import classnames from 'classnames';
 export interface TypographyProps {
   children: React.ReactNode,
   html?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6' | 'p' | 'span',
-  weight?: 'light' | 'bold',
+  weight?: 'light' | 'normal' | 'bold',
   textAlign?: 'left' | 'center' | 'right',
+  color?: 'black' | 'white' | 'main'
 }
 
 export const Typography: React.FC<TypographyProps> = ({
     children,
     html = 'span',
-    weight = 'light',
+    weight = 'normal',
     textAlign = 'left',
+    color = 'black'
   }) => {
   const classProps:string = classnames(
     styles.Typography,
     styles[html],
     styles[weight],
     styles[textAlign],
+    styles[color]
   );
 
   const typography = () => {

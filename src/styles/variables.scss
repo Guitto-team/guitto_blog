@@ -19,3 +19,10 @@ $breakpoints: (
 @mixin shadow() {
   box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
+
+@mixin hover_color-change() {
+  transition: filter 0.3s ease-in-out;
+  &:hover {
+    filter: invert(84%) sepia(21%) saturate(1285%) hue-rotate(26deg) brightness(84%) contrast(84%);
+  }
+}

@@ -20,9 +20,8 @@ export default function Home({ blogs, recommendBlogs, category, tag }) {
 
       <Header />
       <Main>
-        <LayoutInner size='full'>
+        <LayoutInner size='small'>
           <LayoutStack>
-            <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
             <CategoryList categories={category} />
             <motion.div
               initial={{ opacity: 0, y: "10%" }} // 初期状態
@@ -30,15 +29,9 @@ export default function Home({ blogs, recommendBlogs, category, tag }) {
               exit={{ opacity: 0, y: "10%" }}    // アンマウント時
               viewport={{ once: true }}
             >
-              <CardList contents={blogs} />
+              <CardList contents={blogs} size="large" />
             </motion.div>
             <TagList contents={tag} />
-            {recommendBlogs.length > 0 && (
-              <>
-                <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
-                <CardList contents={recommendBlogs} />
-              </>
-            )}
           </LayoutStack>
         </LayoutInner>
       </Main>
@@ -51,17 +44,12 @@ export default function Home({ blogs, recommendBlogs, category, tag }) {
 // データをテンプレートに受け渡す部分の処理を記述します
 export const getStaticProps = async () => {
   const data = await client.get({ endpoint: 'blog' });
-  const recommend = await client.get({
-    endpoint: 'blog',
-    queries: { filters: `recommend[equals]true` },
-  });
   const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
   return {
     props: {
       blogs: data.contents,
-      recommendBlogs: recommend.contents,
       category: categoryData.contents,
       tag: tagData.contents,
     },

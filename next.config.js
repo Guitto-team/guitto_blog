@@ -11,6 +11,12 @@ const nextConfig = {
       @use 'styles/variables.scss' as *;
     `,
   },
+  images: {
+    domains: ['images.microcms-assets.io'],
+  },
+  experimental: {
+    optimizeFonts: true,
+  },
 }
 
 module.exports = nextConfig

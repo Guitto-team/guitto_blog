@@ -1,6 +1,6 @@
 .post {
   & > h1 {
-    font-size: 30px;
+    font-size: 28px;
     font-weight: bold;
     margin: 40px 0 20px;
     background-color: #eee;
@@ -23,6 +23,16 @@
   & > ol {
     list-style-type: decimal;
     list-style-position: inside;
+  }
+}
+
+.eyecatch {
+  position: relative;
+  border-radius: 6px;
+  border: 1px solid var(--border-c);
+  min-height: 250px;
+  @include mq {
+    min-height: 550px;
   }
 }
 

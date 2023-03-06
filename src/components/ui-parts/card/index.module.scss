@@ -5,6 +5,8 @@
   color: var(--black);
   overflow: hidden;
   text-decoration: none;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid var(--border-c);
 }
 
 .head {
@@ -12,8 +14,8 @@
   position: relative;
   overflow: hidden;
   text-decoration: none;
-  height: 180px;
   border-radius: 6px;
+  aspect-ratio: 2 / 1;
 
   &:before {
     content: "more";
@@ -58,12 +60,12 @@
   position: relative;
 }
 
-.category {
-  color: var(--white);
-  background-color: var(--green);
-  border-radius: 2em;
-  padding: 0.1em 0.8em;
-  position: absolute;
-  top: 10px;
-  left: 10px;
+.title {
+  text-decoration: none;
+  & > * {
+    transition: color 0.3s ease-in-out;
+  }
+  &:hover > * {
+    color: var(--main-c);
+  }
 }

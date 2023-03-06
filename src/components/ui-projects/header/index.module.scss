@@ -1,17 +1,39 @@
 .header {
+  z-index: 5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 10px 3%;
+  background-color: var(--white);
   border-bottom: 1px solid var(--border-c);
   height: var(--header-height);
   @include mq {
     height: var(--header-height-pc);
   }
+
+  a {
+    text-decoration: none;
+  }
+
+}
+
+.home {
+  font-size: 20px;
+  font-weight: bold;
 }
 
 .lists {
   display: flex;
   justify-content: space-evenly;
   gap: 1rem;
+}
+.icon {
+  position: relative;
+  width: 22px;
+  height: 22px;
+  @include hover_color-change;
 }

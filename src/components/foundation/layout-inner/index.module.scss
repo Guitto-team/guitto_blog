@@ -4,8 +4,14 @@
   margin-right: auto;
 }
 
-.medum {
-  max-width: var(--inner-width);
+.small {
+  max-width: var(--inner-width-small);
+}
+.medium {
+  max-width: var(--inner-width-medium);
+}
+.large {
+  max-width: var(--inner-width-large);
 }
 
 .full {
