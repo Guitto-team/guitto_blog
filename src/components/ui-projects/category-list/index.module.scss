@@ -1,12 +1,7 @@
 .link {
   display: block;
-  padding: 3px 10px;
-  border-radius: 1rem;
+  padding: 5px 0;
   text-decoration: none;
   transition: background-color 0.3s, color 0.3s;
-
-  &.isActive, &:hover {
-    background-color: var(--green);
-    color: var(--white);
-  }
+  border-bottom: 1px solid var(--border-c);
 }

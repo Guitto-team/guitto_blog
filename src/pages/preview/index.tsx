@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import { client } from 'libs/client';
 import styles from '../blog/index.module.scss';
 import Header from 'components/ui-projects/header';
-import Footer from 'components/ui-projects/footer'
+import Footer from 'components/ui-projects/footer';
+import Sidebar from 'components/ui-projects/sidebar';
 import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
@@ -23,6 +24,8 @@ export default function BlogId({ blog }) {
       />
 
       <Header />
+      <Sidebar />
+
       <motion.div className={styles.progressBar} style={{ scaleX: scrollYProgress }} />
       <Main>
         <LayoutInner>

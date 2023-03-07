@@ -1,13 +1,12 @@
 import { client } from '../../libs/client';
 import Header from 'components/ui-projects/header';
-import Footer from 'components/ui-projects/footer'
+import Footer from 'components/ui-projects/footer';
+import Sidebar from 'components/ui-projects/sidebar';
 import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
-import CategoryList from 'components/ui-projects/category-list';
 import Seo from 'components/foundation/seo';
 import { CardList } from 'components/ui-projects/card-list';
-import { TagList } from 'components/ui-projects/tag-list';
 import { motion } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
 
@@ -22,29 +21,20 @@ export default function CategoryId({ blogs, recommendBlogs, category, tag, id })
       />
 
       <Header />
+      <Sidebar categories={category} tags={tag} />
+
       <Main>
-        <LayoutInner size='full'>
+        <LayoutInner size='small'>
           <LayoutStack>
-            <Typography html='h1' textAlign='center'>ぐいっとBLOG</Typography>
-            <CategoryList categories={category} active={id} />
+            <Typography html='h1' textAlign='center'>「{target.name}」の記事一覧</Typography>
 
             <motion.div
               initial={{ opacity: 0, y: "10%" }} // 初期状態
               animate={{ opacity: 1, y: "0%" }} // マウント時
               exit={{ opacity: 0, y: "10%" }}    // アンマウント時            
             >
-              {blogs.length === 0 ? <Typography html='p' textAlign='center'>コンテンツがありません</Typography> : <CardList contents={blogs} />}
+              {blogs.length === 0 ? <Typography html='p' textAlign='center'>コンテンツがありません</Typography> : <CardList contents={blogs} size='large' />}
             </motion.div>
-
-            <TagList contents={tag} />
-
-            {recommendBlogs.length > 0 && (
-              <>
-                <Typography html='h3' textAlign='center'>おすすめ記事</Typography>
-                <CardList contents={recommendBlogs} />
-              </>
-            )}
-
           </LayoutStack>
         </LayoutInner>
       </Main>

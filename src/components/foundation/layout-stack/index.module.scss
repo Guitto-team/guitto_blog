@@ -30,3 +30,8 @@
     margin-top: var(--margin-s4);
   }
 }
+.s5 {
+  > * + * {
+    margin-top: var(--margin-s5);
+  }
+}

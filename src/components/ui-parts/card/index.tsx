@@ -19,7 +19,7 @@ export const Card: React.FC<CardProps> = ({
     info = 'title'
   }) => {
   return (
-    <div className={classnames(styles.card)}>
+    <div className={classnames(styles.card, info === 'full' && styles.full)}>
       <LayoutStack margin='s0'>
         <Link href={`/blog/${content.id}`} scroll={false}>
           <a className={classnames(styles.head)}>
@@ -37,7 +37,7 @@ export const Card: React.FC<CardProps> = ({
               </Link>
               ) : (
                 <LayoutStack margin='s0'>
-                  <Flex justifyContent='j-flex-start'>
+                  <Flex justifyContent='j-flex-start' gap='small'>
                     <Category content={content.category.name} />
                     <TagList contents={content.tag} justifyContent={'j-flex-start'} />
                   </Flex>

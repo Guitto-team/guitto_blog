@@ -5,8 +5,11 @@
   color: var(--black);
   overflow: hidden;
   text-decoration: none;
-  padding-bottom: 1rem;
-  border-bottom: 1px solid var(--border-c);
+
+  &.full {
+    border-bottom: 1px solid var(--border-c);
+    padding-bottom: 1.5rem;
+  }
 }
 
 .head {

@@ -4,27 +4,27 @@ import styles from './index.module.scss';
 import classnames from 'classnames';
 import { Flex } from 'components/foundation/flex';
 export interface CategoryListProps {
-  categories: any,
+  contents: any,
   active?: string,
 }
 
 export const CategoryList: React.FC<CategoryListProps> = ({
-    categories,
+    contents,
     active = 'all',
   }) => {
     // const classProps:string = classnames(
     //   );
   return (
-    <Flex gap='medium'>
+    <Flex gap='none' direction='col'>
       <li className={classnames(styles.item)}>
         <Link href={`/`} scroll={false}>
           <a className={classnames(styles.link, active === 'all' && styles.isActive)}>ALL</a>
         </Link>
       </li>
-      {categories.map((category) => (
-        <li key={category.id} className={classnames(styles.item)}>
-          <Link href={`/category/${category.id}`} scroll={false}>
-            <a className={classnames(styles.link, active === category.id && styles.isActive)}>{category.name}</a>
+      {contents.map((content) => (
+        <li key={content.id} className={classnames(styles.item)}>
+          <Link href={`/category/${content.id}`} scroll={false}>
+            <a className={classnames(styles.link, active === content.id && styles.isActive)}>{content.name}</a>
           </Link>
         </li>
       ))}

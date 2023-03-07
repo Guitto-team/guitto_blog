@@ -3,7 +3,7 @@ import classnames from 'classnames'
 import styles from './index.module.scss'
 
 export interface LayoutStackProps {
-  margin?: 'none' | 's0' | 's1' | 's2'| 's3'| 's4',
+  margin?: 'none' | 's0' | 's1' | 's2'| 's3'| 's4' | 's5',
   children: React.ReactNode,
 }
 
