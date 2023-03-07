@@ -24,7 +24,6 @@ export default function BlogId({ blog }) {
       />
 
       <Header />
-      <Sidebar />
 
       <motion.div className={styles.progressBar} style={{ scaleX: scrollYProgress }} />
       <Main>
