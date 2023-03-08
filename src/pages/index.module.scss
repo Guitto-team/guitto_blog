@@ -1,0 +1,19 @@
+.button {
+  display: block;
+  padding: 5px 15px;
+  border: 1px solid var(--main-c);
+  background-color: var(--main-c);
+  color: var(--white);
+  text-align: center;
+  width: fit-content;
+  border-radius: 2rem;
+  margin-left: auto;
+  margin-right: auto;
+  text-decoration: none;
+  transition: 0.3s;
+
+  &:hover {
+    background-color: var(--white);
+    color: var(--main-c);
+  }
+}

@@ -11,7 +11,7 @@ import { CardList } from 'components/ui-projects/card-list';
 import { motion } from 'framer-motion'
 import { Pagination } from 'components/ui-projects/pagination';
 
-export default function Home({ blogs, totalCount, category, tag }) {
+export default function Home({ blogs, totalCount, currentPageNumber, category, tag }) {
   return (
     <>
       <Seo title='Blog Top' />
@@ -29,7 +29,7 @@ export default function Home({ blogs, totalCount, category, tag }) {
             >
               <CardList contents={blogs} size="large" />
             </motion.div>
-            <Pagination currentPageNumber={1} maxPageNumber={Math.ceil(totalCount / 5)} />
+            <Pagination currentPageNumber={currentPageNumber} maxPageNumber={Math.ceil(totalCount / 5)} />
           </LayoutStack>
         </LayoutInner>
       </Main>
@@ -39,12 +39,23 @@ export default function Home({ blogs, totalCount, category, tag }) {
   );
 }
 
+export const getStaticPaths = async () => {
+  const range = (start, end) => [...Array(end - start + 1)].map((_, i) => start + i);
+  const data = await client.get({ endpoint: 'blog' });
+
+  const { totalCount } = data;
+  const paths = range(1, Math.ceil(totalCount / 5)).map((i) => `/blog/page/${i}`);
+  return { paths, fallback: false };
+};
+
 // データをテンプレートに受け渡す部分の処理を記述します
-export const getStaticProps = async () => {
-  const offset = 0;
+export const getStaticProps = async (context) => {
+  const numId = context.params.id;
+  const offset = (numId - 1) * 5;
   const limit = 5;
   const queries = { offset: offset, limit: limit };
   const data = await client.get({ endpoint: 'blog', queries: queries });
+
   const categoryData = await client.get({ endpoint: 'categories' });
   const tagData = await client.get({ endpoint: 'tags' });
 
@@ -52,6 +63,7 @@ export const getStaticProps = async () => {
     props: {
       blogs: data.contents,
       totalCount: data.totalCount,
+      currentPageNumber: numId,
       category: categoryData.contents,
       tag: tagData.contents,
     },

@@ -6,7 +6,7 @@ export interface FlexProps {
   justifyContent?: 'j-flex-start' | 'j-center' | 'j-flex-end' | 'j-between';
   alignItems?: 'a-flex-start' | 'a-center' | 'a-flex-end';
   direction?: 'row' | 'col';
-  gap?: 'none' | 'small' | 'medium' | 'large' | 'xlarge',
+  gap?: 'none' | 'xsmall' | 'small' | 'medium' | 'large' | 'xlarge',
   children: React.ReactNode,
 }
 

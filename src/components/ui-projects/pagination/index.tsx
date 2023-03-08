@@ -1,21 +1,40 @@
-import Router from 'next/router';
 import Link from 'next/link';
+import { Flex } from 'components/foundation/flex';
+import styles from './index.module.scss'
 
-export const Pagination = ({ totalCount }) => {
-  const PER_PAGE = 5;
+export const Pagination = ({ maxPageNumber, currentPageNumber }) => {
+  currentPageNumber = Number(currentPageNumber);
+  maxPageNumber = Number(maxPageNumber);
+  const prevPage = currentPageNumber - 1;
+  const nextPage = currentPageNumber + 1;
+  const pageNumbers = [];
 
-  const range = (start, end) =>
-        [...Array(end - start + 1)].map((_, i) => start + i)
+  for (let i = 1; i <= maxPageNumber; i++) {
+    pageNumbers.push(i);
+  }
 
   return (
-    <ul>
-      {range(1, Math.ceil(totalCount / PER_PAGE)).map((number, index) => (
-        <li key={index}>
-          <Link href={ `/blog/page/${number}`}>
-            <a>{number}</a>
+    <Flex justifyContent='j-center' gap='small'>
+      {currentPageNumber !== 1 && (
+        <Link href={`/blog/page/${prevPage}`}>
+          <a className={styles.link}>＜</a>
+        </Link>
+      )}
+
+      {pageNumbers.map((pageNumber) => {
+        const isActive = pageNumber === currentPageNumber;
+        return (
+          <Link key={pageNumber} href={`/blog/page/${pageNumber}`}>
+            <a className={`${styles.number} ${isActive ? styles.isActive : ""}`}>{pageNumber}</a>
           </Link>
-        </li>
-      ))}
-    </ul>
+        );
+      })}
+
+      {currentPageNumber !== maxPageNumber && (
+        <Link href={`/blog/page/${nextPage}`}>
+          <a className={styles.link}>＞</a>
+        </Link>
+      )}
+    </Flex>
   );
 };

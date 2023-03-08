@@ -1,4 +1,5 @@
 .post {
+  margin-bottom: 4rem;
   & > h1 {
     font-size: 28px;
     font-weight: bold;
@@ -26,6 +27,10 @@
   }
 }
 
+.publishedAt {
+  color: #808080;
+}
+
 .eyecatch {
   position: relative;
   border-radius: 6px;
@@ -48,14 +53,4 @@
   color: var(--white);
   padding: 5px 10px;
   border-radius: 1rem;
-}
-
-.progressBar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 10px;
-  background: var(--red);
-  transform-origin: 0%;
 }

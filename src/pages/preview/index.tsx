@@ -7,15 +7,25 @@ import Sidebar from 'components/ui-projects/sidebar';
 import { Main } from 'components/ui-projects/main';
 import LayoutInner from 'components/foundation/layout-inner';
 import LayoutStack from 'components/foundation/layout-stack';
+import { Flex } from 'components/foundation/flex';
 import Seo from 'components/foundation/seo';
-// import { CardList } from 'components/ui-projects/card-list';
+import { CardList } from 'components/ui-projects/card-list';
 import { TagList } from 'components/ui-projects/tag-list';
 import { motion, useScroll } from 'framer-motion'
 import { Typography } from 'components/ui-parts/typography';
+import { Eyecatch } from 'components/ui-parts/eyecatch';
+import { Category } from 'components/ui-parts/category';
+import dayjs from 'dayjs';
+import utc from 'dayjs/plugin/utc';
+import timezone from 'dayjs/plugin/timezone';
 
+export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, tag }) {
 
-export default function BlogId({ blog }) {
-  const { scrollYProgress } = useScroll();
+  // 投稿日時の変換
+  dayjs.extend(utc);
+  dayjs.extend(timezone);
+  const published = dayjs.utc(blog.publishedAt).tz('Asia/Tokyo').format('YYYY.MM.DD')
+  
   return (
     <>
       <Seo
@@ -24,33 +34,79 @@ export default function BlogId({ blog }) {
       />
 
       <Header />
+      <Sidebar categories={category} tags={tag} />
 
-      <motion.div className={styles.progressBar} style={{ scaleX: scrollYProgress }} />
       <Main>
-        <LayoutInner>
-          <LayoutStack>
-            <motion.div
-              initial={{ opacity: 0, scale: 0.9 }} // 初期状態
-              animate={{ opacity: 1, scale: 1 }} // マウント時
-              exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
-            >
-              <Typography html='h1'>{blog.title}</Typography>
-              <p className={styles.publishedAt}>{blog.publishedAt}</p>
-              <span className={styles.category}>{blog.category && `${blog.category.name}`}</span>
-              {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)}
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: `${blog.content}`,
-                }}
-                className={styles.post}
-              />
-              {blog.tag && (
-                <TagList contents={blog.tag} />
-              )}
 
-            </motion.div>
-          </LayoutStack>
-        </LayoutInner>
+        <LayoutStack margin='s5'>
+
+          <LayoutInner size='medium'>
+            <LayoutStack>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }} // 初期状態
+                animate={{ opacity: 1, scale: 1 }} // マウント時
+                exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+              >
+                <Typography html='h1'>{blog.title}</Typography>
+                <Flex justifyContent=''>
+                  <p className={styles.publishedAt}>{published}</p>
+
+                </Flex>
+                {/* {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)} */}
+              </motion.div>
+            </LayoutStack>
+          </LayoutInner>
+
+          {blog.eyecatch && (
+            <LayoutInner size='large'>
+              <LayoutStack>
+                <div className={styles.eyecatch}>
+                  <Eyecatch eyecatch={blog.eyecatch} alt={blog.title} objectFit='contain' />
+                </div>
+              </LayoutStack>
+            </LayoutInner>
+          )}
+
+          <LayoutInner size='medium'>
+            <LayoutStack>
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }} // 初期状態
+                animate={{ opacity: 1, scale: 1 }} // マウント時
+                exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+              >
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: `${blog.content}`,
+                  }}
+                  className={styles.post}
+                />
+                <Flex justifyContent='j-flex-start'>
+                  {blog.category && <Category content={blog.category.name} />}
+                  <TagList contents={blog.tag} />
+                </Flex>
+              </motion.div>
+            </LayoutStack>
+          </LayoutInner>
+
+          <LayoutInner size='large'>
+            <LayoutStack margin='s5'>
+              {categoryBlogs.length > 0 && (
+                <LayoutStack margin='s3'>
+                  <Typography html='h3' textAlign='left'>同じカテゴリーの記事</Typography>
+                  <CardList contents={categoryBlogs} />
+                </LayoutStack>
+              )}
+              {recommendBlogs.length > 0 && (
+                <LayoutStack margin='s3'>
+                  <Typography html='h3' textAlign='left'>おすすめ記事</Typography>
+                  <CardList contents={recommendBlogs} />
+                </LayoutStack>
+              )}
+            </LayoutStack>
+          </LayoutInner>
+
+        </LayoutStack>
+
       </Main>
       <Footer />
 
@@ -59,13 +115,32 @@ export default function BlogId({ blog }) {
 }
 
 export const getServerSideProps = async (context) => {
+  const id = context.params.id;
   const data = await client.get({
     endpoint: "blog",
     contentId: context.query.slug,
     queries: { draftKey: context.query.draftKey },
   });
+  const recommend = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `recommend[equals]true[and]id[not_equals]${id}` },
+  });
+  const categoryId = data.category.id;
+  const category = await client.get({
+    endpoint: 'blog',
+    queries: { filters: `category[equals]${categoryId}[and]id[not_equals]${id}` },
+  });
+  const categoryData = await client.get({ endpoint: 'categories' });
+  const tagData = await client.get({ endpoint: 'tags' });
+
 
   return {
-    props: { blog: data },
+    props: { 
+      blog: data,
+      recommendBlogs: recommend.contents,
+      categoryBlogs: category.contents,
+      category: categoryData.contents,
+      tag: tagData.contents,
+    },
   };
 };
