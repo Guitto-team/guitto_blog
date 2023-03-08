@@ -89,23 +89,27 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
           )}
 
           <LayoutInner size='medium'>
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }} // 初期状態
+              animate={{ opacity: 1, scale: 1 }} // マウント時
+              exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+            >
+              <div
+                dangerouslySetInnerHTML={{
+                  __html: `${blog.content}`,
+                }}
+                className={styles.post}
+              />
+
+            </motion.div>
+          </LayoutInner>
+
+          <LayoutInner size='medium'>
             <LayoutStack>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }} // 初期状態
-                animate={{ opacity: 1, scale: 1 }} // マウント時
-                exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
-              >
-                <div
-                  dangerouslySetInnerHTML={{
-                    __html: `${blog.content}`,
-                  }}
-                  className={styles.post}
-                />
-                <Flex justifyContent='j-flex-start' gap='small'>
-                  {blog.category && <Category content={blog.category.name} />}
-                  <TagList contents={blog.tag} />
-                </Flex>
-              </motion.div>
+              <Flex justifyContent='j-flex-start' gap='small'>
+                {blog.category && <Category content={blog.category.name} />}
+                <TagList contents={blog.tag} />
+              </Flex>
             </LayoutStack>
           </LayoutInner>
 
