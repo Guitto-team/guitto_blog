@@ -26,6 +26,7 @@ export default function Home({ blogs, totalCount, currentPageNumber, category, t
               whileInView={{ opacity: 1, y: "0%" }} // マウント時
               exit={{ opacity: 0, y: "10%" }}    // アンマウント時
               viewport={{ once: true }}
+              transition={{ duration: 0.5 }}
             >
               <CardList contents={blogs} size="large" />
             </motion.div>

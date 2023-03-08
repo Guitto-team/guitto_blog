@@ -56,6 +56,12 @@
     list-style-type: disc;
   }
 
+  & > * + ul,
+  & > * + ol {
+    margin-top: 1rem;
+  }
+
+
 }
 
 .publishedAt {

@@ -47,11 +47,19 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
           <LayoutInner size='medium'>
             <LayoutStack>
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }} // 初期状態
-                animate={{ opacity: 1, scale: 1 }} // マウント時
-                exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+                initial={{ opacity: 0, y: 50 }} // 初期状態
+                animate={{ opacity: 1, y: 0 }} // マウント時
+                exit={{ opacity: 0, y: -50 }}    // アンマウント時
+                transition={{ duration: 0.5 }}
               >
                 <Typography html='h1'>{blog.title}</Typography>
+              </motion.div>
+              <motion.div
+                initial={{ opacity: 0, x: -50 }} // 初期状態
+                animate={{ opacity: 1, x: 0 }} // マウント時
+                exit={{ opacity: 0, x: 50 }}    // アンマウント時
+                transition={{ duration: 0.5 }}
+              >
                 <Flex justifyContent='j-flex-end' gap='xsmall'>
                   <p className={styles.publishedAt}>{published}</p>
 
@@ -71,10 +79,10 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
                   <LineShareButton url={shareUrl} title={blog.title}>
                     <LineIcon size={30} round={true} />
                   </LineShareButton>
-
                 </Flex>
-                {/* {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)} */}
               </motion.div>
+                {/* {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)} */}
+              
             </LayoutStack>
           </LayoutInner>
 
@@ -84,7 +92,8 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
                 <motion.div
                   initial={{ opacity: 0, scale: 0.9 }} // 初期状態
                   animate={{ opacity: 1, scale: 1 }} // マウント時
-                  exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+                  exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時
+                  transition={{ duration: 0.5 }}
                 >
                   <div className={styles.eyecatch}>
                     <Eyecatch eyecatch={blog.eyecatch} alt={blog.title} objectFit='contain' />
@@ -96,9 +105,10 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
 
           <LayoutInner size='medium'>
             <motion.div
-              initial={{ opacity: 0, scale: 0.9 }} // 初期状態
-              animate={{ opacity: 1, scale: 1 }} // マウント時
-              exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+              initial={{ opacity: 0, y: 50 }} // 初期状態
+              animate={{ opacity: 1, y: 0 }} // マウント時
+              exit={{ opacity: 0, y: -50 }}    // アンマウント時
+              transition={{ duration: 0.5 }}
             >
               <div
                 dangerouslySetInnerHTML={{

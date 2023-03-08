@@ -1,4 +1,5 @@
 import React from 'react';
+import sanitizeHtml from "sanitize-html";
 import Link from "next/link";
 import styles from './index.module.scss';
 import classnames from 'classnames';
@@ -17,6 +18,13 @@ export const Card: React.FC<CardProps> = ({
     content,
     info = 'title'
   }) => {
+
+  function removeTags(html) {
+    return sanitizeHtml(html, { allowedTags: [], allowedAttributes: {} });
+  }
+
+  const plainText = removeTags(content.content.substring(0, 140));
+    
   return (
     <div className={classnames(styles.card, info === 'full' && styles.full)}>
       <LayoutStack margin='s0'>
@@ -42,12 +50,9 @@ export const Card: React.FC<CardProps> = ({
                 <Link href={`/blog/${content.id}`} scroll={false}>
                   <a className={classnames(styles.link)}>
                     <Typography html='h4' weight='normal'><span className={classnames(styles.title)}>{content.title}</span></Typography>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: `${content.content.substring(0, 130)}...`,
-                      }}
-                      className={styles.text}
-                    />
+                    <div className={styles.text} >
+                      {`${plainText}...`}
+                    </div>
                   </a>
                 </Link>
               </LayoutStack>
