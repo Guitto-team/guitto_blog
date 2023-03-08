@@ -63,12 +63,18 @@
   position: relative;
 }
 
-.title {
+.link {
+  display: block;
   text-decoration: none;
-  & > * {
-    transition: color 0.3s ease-in-out;
-  }
-  &:hover > * {
+  margin-top: 0.5rem;
+
+  &:hover .title {
     color: var(--main-c);
   }
+}
+.title {
+  transition: color 0.3s ease-in-out;
+}
+.text {
+  font-size: 14px;
 }
