@@ -10,7 +10,7 @@ export interface SeoProps {
 export const Seo: React.FC<SeoProps> = ({
     title = 'BLOG',
     description = 'ぐいっとは、東京の神保町で企画・デザインを中心に制作事業を行っているクリエイティブ企業です。各種WEB制作・グラフィック制作等、ご相談ください。',
-    imageUrl = ''
+    imageUrl = `${process.env.SITE_URL}/images/ogp.png`
   }) => {
   return (
     <Head>
@@ -24,7 +24,7 @@ export const Seo: React.FC<SeoProps> = ({
         property='og:description'
         content={description}
       />
-      <meta property="og:image" content={`${process.env.SITE_URL}/ogp.png`} />
+      <meta property="og:image" content={imageUrl} />
       <meta property="og:site_name" content="BLOG ｜ Guitto Inc."></meta>
     </Head>
   );
