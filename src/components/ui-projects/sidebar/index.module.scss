@@ -34,6 +34,7 @@
   
     &:hover {
       background-color: var(--white);
+      opacity: 1;
       .buttonIcon {
         filter: invert(11%) sepia(1%) saturate(1336%) hue-rotate(317deg) brightness(95%) contrast(76%);
       }
@@ -105,6 +106,7 @@
     &.isActive,
     &:focus {
       background-color: var(--black);
+      opacity: 1;
       .buttonText {
         color: var(--white);
       }

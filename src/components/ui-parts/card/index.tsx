@@ -31,8 +31,8 @@ export const Card: React.FC<CardProps> = ({
             {
               info === 'title' ? (
                 <Link href={`/blog/${content.id}`} scroll={false}>
-                <a className={classnames(styles.title)}>
-                  <Typography html='p' weight='bold'>{content.title}</Typography>
+                <a className={classnames(styles.link)}>
+                  <Typography html='p' weight='bold'><span className={classnames(styles.title)}>{content.title}</span></Typography>
                 </a>
               </Link>
               ) : (
