@@ -14,7 +14,7 @@ import { Pagination } from 'components/ui-projects/pagination';
 export default function Home({ blogs, totalCount, category, tag }) {
   return (
     <>
-      <Seo title='Blog Top' />
+      <Seo />
 
       <Header />
       <Sidebar categories={category} tags={tag} />
