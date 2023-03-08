@@ -18,13 +18,17 @@ import { Category } from 'components/ui-parts/category';
 import dayjs from 'dayjs';
 import utc from 'dayjs/plugin/utc';
 import timezone from 'dayjs/plugin/timezone';
+import { TwitterShareButton, FacebookShareButton, LineShareButton, PinterestShareButton, TwitterIcon, FacebookIcon, LineIcon, PinterestIcon } from "react-share";
 
 export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, tag }) {
 
   // 投稿日時の変換
   dayjs.extend(utc);
   dayjs.extend(timezone);
-  const published = dayjs.utc(blog.publishedAt).tz('Asia/Tokyo').format('YYYY.MM.DD')
+  const published = dayjs.utc(blog.publishedAt).tz('Asia/Tokyo').format('YYYY.MM.DD');
+
+  // 共有用URLを取得
+  const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
   
   return (
     <>
@@ -48,9 +52,24 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
                 exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
               >
                 <Typography html='h1'>{blog.title}</Typography>
-                <Flex justifyContent=''>
+                <Flex justifyContent='j-flex-start' gap='xsmall'>
                   <p className={styles.publishedAt}>{published}</p>
+                  <FacebookShareButton url={shareUrl} quote={blog.title}>
+                    <FacebookIcon size={30} round={true} />
+                  </FacebookShareButton>
 
+                  <TwitterShareButton url={shareUrl} title={blog.title}>
+                    <TwitterIcon size={30} round={true} />
+                  </TwitterShareButton>
+
+
+                  <PinterestShareButton url={shareUrl} title={blog.title} media={blog.eyecatch}>
+                    <PinterestIcon size={30} round={true} />
+                  </PinterestShareButton>
+
+                  <LineShareButton url={shareUrl} title={blog.title}>
+                    <LineIcon size={30} round={true} />
+                  </LineShareButton>
                 </Flex>
                 {/* {blog.recommend && (<span className={styles.recommend}>おすすめ</span>)} */}
               </motion.div>
@@ -80,7 +99,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
                   }}
                   className={styles.post}
                 />
-                <Flex justifyContent='j-flex-start'>
+                <Flex justifyContent='j-flex-start' gap='small'>
                   {blog.category && <Category content={blog.category.name} />}
                   <TagList contents={blog.tag} />
                 </Flex>
