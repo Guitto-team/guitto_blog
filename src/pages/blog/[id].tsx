@@ -81,9 +81,15 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
           {blog.eyecatch && (
             <LayoutInner size='large'>
               <LayoutStack>
-                <div className={styles.eyecatch}>
-                  <Eyecatch eyecatch={blog.eyecatch} alt={blog.title} objectFit='contain' />
-                </div>
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }} // 初期状態
+                  animate={{ opacity: 1, scale: 1 }} // マウント時
+                  exit={{ opacity: 0, scale: 0.9 }}    // アンマウント時            
+                >
+                  <div className={styles.eyecatch}>
+                    <Eyecatch eyecatch={blog.eyecatch} alt={blog.title} objectFit='contain' />
+                  </div>
+                </motion.div>
               </LayoutStack>
             </LayoutInner>
           )}
