@@ -4,7 +4,6 @@ import styles from './index.module.scss';
 import classnames from 'classnames';
 import { Eyecatch } from '../eyecatch';
 import { TagList } from 'components/ui-projects/tag-list';
-import { LayoutBox } from 'components/foundation/layout-box';
 import { LayoutStack } from 'components/foundation/layout-stack';
 import { Typography } from '../typography';
 import { Flex } from 'components/foundation/flex';
