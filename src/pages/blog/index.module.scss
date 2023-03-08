@@ -28,7 +28,7 @@
   & > ul {
     list-style-type: disc;
     list-style-position: inside;
-    padding-left: 1em;
+    padding-left: 1.5em;
   }
 
   li + li {
@@ -51,12 +51,6 @@
 
 .eyecatch {
   position: relative;
-  border-radius: 6px;
-  border: 1px solid var(--border-c);
-  min-height: 250px;
-  @include mq {
-    min-height: 550px;
-  }
 }
 
 .category {

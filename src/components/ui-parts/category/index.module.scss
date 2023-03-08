@@ -3,4 +3,8 @@
   background-color: var(--main-c);
   border-radius: 3px;
   padding: 0.1em 0.5em;
+  font-size: 14px;
+  @include mq {
+    font-size: 16px;
+  }
 }
