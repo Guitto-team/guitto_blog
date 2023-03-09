@@ -35,6 +35,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
       <Seo
         title={blog.title}
         description={`${blog.title}のページ`}
+        imageUrl={blog.eyecatch?.url}
       />
 
       <Header />
