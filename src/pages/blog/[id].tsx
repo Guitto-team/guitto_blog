@@ -127,6 +127,26 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
                 {blog.category && <Category content={blog.category.name} />}
                 <TagList contents={blog.tag} />
               </Flex>
+
+              <Flex justifyContent='j-flex-end' gap='xsmall'>
+                <FacebookShareButton url={shareUrl} quote={blog.title}>
+                  <FacebookIcon size={30} round={true} />
+                </FacebookShareButton>
+
+                <TwitterShareButton url={shareUrl} title={blog.title}>
+                  <TwitterIcon size={30} round={true} />
+                </TwitterShareButton>
+
+
+                <PinterestShareButton url={shareUrl} title={blog.title} media={blog.eyecatch}>
+                  <PinterestIcon size={30} round={true} />
+                </PinterestShareButton>
+
+                <LineShareButton url={shareUrl} title={blog.title}>
+                  <LineIcon size={30} round={true} />
+                </LineShareButton>
+              </Flex>
+
             </LayoutStack>
           </LayoutInner>
 
