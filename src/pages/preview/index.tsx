@@ -143,7 +143,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
 }
 
 export const getServerSideProps = async (context) => {
-  const id = context.params.id;
+  const id = context.params?.id;
   const data = await client.get({
     endpoint: "blog",
     contentId: context.query.slug,
