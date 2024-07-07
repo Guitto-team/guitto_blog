@@ -16,23 +16,27 @@ export const Pagination = ({ maxPageNumber, currentPageNumber }) => {
   return (
     <Flex justifyContent='j-center' gap='small'>
       {currentPageNumber !== 1 && (
-        <Link href={`/blog/page/${prevPage}`}>
-          <a className={styles.link}>＜</a>
+        <Link href={`/blog/page/${prevPage}`} className={styles.link}>
+          ＜
         </Link>
       )}
 
       {pageNumbers.map((pageNumber) => {
         const isActive = pageNumber === currentPageNumber;
         return (
-          <Link key={pageNumber} href={`/blog/page/${pageNumber}`}>
-            <a className={`${styles.number} ${isActive ? styles.isActive : ""}`}>{pageNumber}</a>
+          <Link
+            key={pageNumber}
+            href={`/blog/page/${pageNumber}`}
+            className={`${styles.number} ${isActive ? styles.isActive : ''}`}
+          >
+            {pageNumber}
           </Link>
         );
       })}
 
       {currentPageNumber !== maxPageNumber && (
-        <Link href={`/blog/page/${nextPage}`}>
-          <a className={styles.link}>＞</a>
+        <Link href={`/blog/page/${nextPage}`} className={styles.link}>
+          ＞
         </Link>
       )}
     </Flex>

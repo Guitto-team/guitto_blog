@@ -18,16 +18,19 @@ export default function Custom404() {
       <Main>
         <LayoutInner size='small'>
           <LayoutStack>
-            <Typography html='h1' textAlign='center'>404 Not Found.</Typography>
-            <Typography html='h2' textAlign='center'>ページが見つかりません。</Typography>
-            <Link href={`/`} scroll={false}>
-              <a className={styles.button}>TOPに戻る</a>
+            <Typography html='h1' textAlign='center'>
+              404 Not Found.
+            </Typography>
+            <Typography html='h2' textAlign='center'>
+              ページが見つかりません。
+            </Typography>
+            <Link href={`/`} scroll={false} className={styles.button}>
+              TOPに戻る
             </Link>
           </LayoutStack>
         </LayoutInner>
       </Main>
       <Footer />
-
     </>
   );
 }
