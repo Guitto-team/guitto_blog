@@ -17,14 +17,22 @@ export const CategoryList: React.FC<CategoryListProps> = ({
   return (
     <Flex gap='none' direction='col'>
       <li className={classnames(styles.item)}>
-        <Link href={`/`} scroll={false}>
-          <a className={classnames(styles.link, active === 'all' && styles.isActive)}>ALL</a>
+        <Link
+          href={`/`}
+          scroll={false}
+          className={classnames(styles.link, active === 'all' && styles.isActive)}
+        >
+          ALL
         </Link>
       </li>
       {contents.map((content) => (
         <li key={content.id} className={classnames(styles.item)}>
-          <Link href={`/category/${content.id}`} scroll={false}>
-            <a className={classnames(styles.link, active === content.id && styles.isActive)}>{content.name}</a>
+          <Link
+            href={`/category/${content.id}`}
+            scroll={false}
+            className={classnames(styles.link, active === content.id && styles.isActive)}
+          >
+            {content.name}
           </Link>
         </li>
       ))}
