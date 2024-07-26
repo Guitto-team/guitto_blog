@@ -123,7 +123,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
 
           <LayoutInner size='medium'>
             <LayoutStack>
-              <Flex justifyContent='j-flex-start' gap='small'>
+              <Flex justifyContent='j-flex-start' alignItems='a-center' gap='small' flexWrap='wrap'>
                 {blog.category && <Category content={blog.category.name} />}
                 <TagList contents={blog.tag} />
               </Flex>
