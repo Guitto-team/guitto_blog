@@ -15,7 +15,7 @@ export const TagList: React.FC<TagListProps> = ({
   }) => {
     const classProps:string = classnames(styles.TagList)
   return (
-    <Flex justifyContent={justifyContent} gap='none'>
+    <Flex justifyContent={justifyContent} gap='none' flexWrap='wrap'>
       {contents.map((content) => (
         <li key={content.id}>
           <Tag content={content} />

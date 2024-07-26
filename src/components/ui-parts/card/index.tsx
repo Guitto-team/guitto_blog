@@ -36,7 +36,7 @@ export const Card: React.FC<CardProps> = ({ content, info = 'title' }) => {
             </Link>
           ) : (
             <LayoutStack margin='s0'>
-              <Flex justifyContent='j-flex-start' gap='small'>
+              <Flex justifyContent='j-flex-start' alignItems='a-center' gap='small' flexWrap='wrap'>
                 <Category content={content.category.name} />
                 <TagList contents={content.tag} justifyContent={'j-flex-start'} />
               </Flex>

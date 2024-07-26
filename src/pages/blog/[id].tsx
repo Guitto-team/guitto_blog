@@ -25,12 +25,12 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
   // 投稿日時の変換
   dayjs.extend(utc);
   dayjs.extend(timezone);
-  const published = dayjs.utc(blog.publishedAt).tz('Asia/Tokyo').format('YYYY.MM.DD');
+  const published = blog && dayjs.utc(blog.publishedAt)?.tz('Asia/Tokyo').format('YYYY.MM.DD');
 
   // 共有用URLを取得
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  return (
+  return blog && (
     <>
       <Seo
         title={blog.title}
@@ -123,7 +123,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
 
           <LayoutInner size='medium'>
             <LayoutStack>
-              <Flex justifyContent='j-flex-start' gap='small'>
+              <Flex justifyContent='j-flex-start' alignItems='a-center' gap='small' flexWrap='wrap'>
                 {blog.category && <Category content={blog.category.name} />}
                 <TagList contents={blog.tag} />
               </Flex>
@@ -182,7 +182,7 @@ export const getStaticPaths = async () => {
   const data = await client.get({ endpoint: 'blog' });
 
   const paths = data.contents.map((content) => `/blog/${content.id}`);
-  return { paths, fallback: false };
+  return { paths, fallback: true };
 };
 
 // データをテンプレートに受け渡す部分の処理を記述します
