@@ -30,7 +30,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
   // 共有用URLを取得
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
 
-  return (
+  return blog && (
     <>
       <Seo
         title={blog.title}
