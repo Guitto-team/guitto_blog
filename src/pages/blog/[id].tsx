@@ -25,7 +25,7 @@ export default function BlogId({ blog, recommendBlogs, categoryBlogs, category, 
   // 投稿日時の変換
   dayjs.extend(utc);
   dayjs.extend(timezone);
-  const published = dayjs.utc(blog.publishedAt).tz('Asia/Tokyo').format('YYYY.MM.DD');
+  const published = dayjs.utc(blog.publishedAt)?.tz('Asia/Tokyo').format('YYYY.MM.DD');
 
   // 共有用URLを取得
   const shareUrl = typeof window !== 'undefined' ? window.location.href : '';
