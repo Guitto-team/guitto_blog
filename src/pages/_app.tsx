@@ -4,6 +4,7 @@ import TagManager from 'react-gtm-module'
 
 import '../styles/reset.scss'
 import '../styles/global.scss'
+import '../styles/custom.scss'
 
 function MyApp({ Component, pageProps, router }) {
   // Google Tag Manager start
