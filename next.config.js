@@ -1,21 +1,20 @@
-const path = require('path');
-
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  swcMinify: true,
-  // target: 'serverless',
   sassOptions: {
     includePaths: ['./src'],
-    prependData: `
+    additionalData: `
       @use 'styles/variables.scss' as *;
     `,
   },
   images: {
-    domains: ['images.microcms-assets.io'],
-  },
-  experimental: {
-    optimizeFonts: true,
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'images.microcms-assets.io',
+        pathname: '/**',
+      },
+    ],
   },
 }
 
