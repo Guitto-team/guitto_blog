@@ -3,26 +3,26 @@ import { Flex } from 'components/foundation/flex';
 import styles from './index.module.scss'
 
 export const Pagination = ({ maxPageNumber, currentPageNumber }) => {
-  currentPageNumber = Number(currentPageNumber);
-  maxPageNumber = Number(maxPageNumber);
-  const prevPage = currentPageNumber - 1;
-  const nextPage = currentPageNumber + 1;
+  const currentPage = Number(currentPageNumber);
+  const maxPage = Number(maxPageNumber);
+  const prevPage = currentPage - 1;
+  const nextPage = currentPage + 1;
   const pageNumbers = [];
 
-  for (let i = 1; i <= maxPageNumber; i++) {
+  for (let i = 1; i <= maxPage; i++) {
     pageNumbers.push(i);
   }
 
   return (
     <Flex justifyContent='j-center' gap='small'>
-      {currentPageNumber !== 1 && (
+      {currentPage !== 1 && (
         <Link href={`/blog/page/${prevPage}`} className={styles.link}>
           ＜
         </Link>
       )}
 
       {pageNumbers.map((pageNumber) => {
-        const isActive = pageNumber === currentPageNumber;
+        const isActive = pageNumber === currentPage;
         return (
           <Link
             key={pageNumber}
@@ -34,7 +34,7 @@ export const Pagination = ({ maxPageNumber, currentPageNumber }) => {
         );
       })}
 
-      {currentPageNumber !== maxPageNumber && (
+      {currentPage !== maxPage && (
         <Link href={`/blog/page/${nextPage}`} className={styles.link}>
           ＞
         </Link>
