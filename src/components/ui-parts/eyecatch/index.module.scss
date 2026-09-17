@@ -1,4 +1,6 @@
 .eyecatch {
+  /* fill 指定の Image はこの要素を基準に配置・クリップされる */
+  position: relative;
   aspect-ratio: 24 / 11;
   border-radius: 6px;
   overflow: hidden;

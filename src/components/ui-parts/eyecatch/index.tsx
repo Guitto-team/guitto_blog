@@ -18,7 +18,14 @@ export const Eyecatch: React.FC<EyecatchProps> = ({
 
   return (
     <div className={classnames(styles.eyecatch)}>
-      <Image src={imageUrl} layout='fill' alt={`${alt}のアイキャッチ画像`} objectFit={objectFit} className={classnames(styles.image)} />
+      <Image
+        src={imageUrl}
+        fill
+        sizes='100vw'
+        alt={`${alt}のアイキャッチ画像`}
+        style={{ objectFit }}
+        className={classnames(styles.image)}
+      />
     </div>
   );
 }
